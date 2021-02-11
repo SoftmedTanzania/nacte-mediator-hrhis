@@ -1,12 +1,14 @@
 package tz.go.moh.him.nacte.mediator.hrhis.mock;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.openhim.mediator.engine.messages.MediatorHTTPRequest;
 import org.openhim.mediator.engine.testing.MockHTTPConnector;
 import tz.go.moh.him.nacte.mediator.hrhis.HrhisOrchestratorTest;
 import tz.go.moh.him.nacte.mediator.hrhis.domain.HrhisRequest;
+import tz.go.moh.him.nacte.mediator.hrhis.gsonTypeAdapter.AttributeSummaryTypeDeserializer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,7 +68,10 @@ public class MockDestination extends MockHTTPConnector {
 
         Assert.assertNotNull(stream);
 
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(HrhisRequest.SummaryType.class, new AttributeSummaryTypeDeserializer());
+        gsonBuilder.registerTypeAdapter(HrhisRequest.SummaryType.class, new AttributeSummaryTypeDeserializer());
+        Gson gson = gsonBuilder.create();
 
         HrhisRequest expected;
 

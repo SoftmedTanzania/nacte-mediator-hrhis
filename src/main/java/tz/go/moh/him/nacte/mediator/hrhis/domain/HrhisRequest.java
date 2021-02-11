@@ -2,24 +2,24 @@ package tz.go.moh.him.nacte.mediator.hrhis.domain;
 
 public class HrhisRequest {
     /**
+     * Value of 0 will just produce the results and the value of 1 will return data including the summary
+     */
+    SummaryType summary;
+
+    /**
      * Academic year should reflect the end of the academic year. Example: Academic year 2019/2020 the the parameter should be 2020
      */
-    int academicYear;
+    private int academicYear;
 
     /**
      * Paging number of the data fetched
      */
-    int pageNumber;
+    private int pageNumber;
 
     /**
      * Size of the page to be fetched
      */
-    int pageSize;
-
-    /**
-     * Value of 0 will just produce the results and the value of 1 will return data including the summary
-     */
-    int summary;
+    private int pageSize;
 
     public int getAcademicYear() {
         return academicYear;
@@ -46,10 +46,23 @@ public class HrhisRequest {
     }
 
     public int getSummary() {
-        return summary;
+        return summary.getValue();
     }
 
-    public void setSummary(int summary) {
+    public void setSummary(SummaryType summary) {
         this.summary = summary;
+    }
+
+    public enum SummaryType {
+        RESULTS(0), SUMMARY(1);
+        private final int value;
+
+        SummaryType(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }

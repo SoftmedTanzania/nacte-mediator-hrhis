@@ -17,7 +17,9 @@
       "name": "HRHIS to Nacte Mediator",
       "urlPattern": "^/nacte$",
       "type": "http",
-      "allow": ["hrhistonactemediator"],
+      "allow": [
+        "hrhistonactemediator"
+      ],
       "routes": [
         {
           "name": "HRHIS to Nacte Mediator Route",
