@@ -1,0 +1,33 @@
+{
+  "urn": "urn:uuid:068583e0-6c57-11eb-af21-471e9f9cc89e",
+  "version": "0.1.0",
+  "name": "HRHIS to Nacte Mediator",
+  "description": "This is an Openhim mediator that handles data sharing between HRHIS and Nacte",
+  "endpoints": [
+    {
+      "name": "HRHIS to Nacte Mediator Route",
+      "host": "localhost",
+      "port": "3016",
+      "path": "/nacte",
+      "type": "http"
+    }
+  ],
+  "defaultChannelConfig": [
+    {
+      "name": "HRHIS to Nacte Mediator",
+      "urlPattern": "^/nacte$",
+      "type": "http",
+      "allow": ["hrhistonactemediator"],
+      "routes": [
+        {
+          "name": "HRHIS to Nacte Mediator Route",
+          "host": "localhost",
+          "port": "3016",
+          "path": "/nacte",
+          "type": "http",
+          "primary": "true"
+        }
+      ]
+    }
+  ]
+}
