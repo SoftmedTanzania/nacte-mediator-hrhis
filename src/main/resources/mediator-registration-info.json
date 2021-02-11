@@ -29,5 +29,49 @@
         }
       ]
     }
+  ],
+  "configDefs": [
+    {
+      "param": "destinationConnectionProperties",
+      "displayName": "Destination Connection Properties",
+      "description": "Configuration to set the hostname, port and path for the destination server",
+      "type": "struct",
+      "template": [
+        {
+          "param": "destinationHost",
+          "displayName": "Destination Host Name",
+          "description": "IP address/hostname of the destination server. e.g 192.168.1.1",
+          "type": "string"
+        },
+        {
+          "param": "destinationPort",
+          "displayName": "Destination Port Number",
+          "description": "The port number of the destination server. e.g 8080",
+          "type": "number"
+        },
+        {
+          "param": "destinationPath",
+          "displayName": "Destination Path",
+          "description": "The destination path for receiving data from the HIM. eg /hdr",
+          "type": "string"
+        },
+        {
+          "param": "destinationScheme",
+          "displayName": "Destination Scheme",
+          "description": "Whether the destination is using HTTP or HTTPS requests.",
+          "type": "option",
+          "values": [
+            "http",
+            "https"
+          ]
+        },
+        {
+          "param": "destinationAuthenticationToken",
+          "displayName": "Destination Authentication Token",
+          "description": "The authentication token for the destination system.",
+          "type": "string"
+        }
+      ]
+    }
   ]
 }
