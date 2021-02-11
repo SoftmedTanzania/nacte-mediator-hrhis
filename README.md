@@ -1,10 +1,10 @@
-# Human Resource Health Infomation System (HRHIS) - The National Council for Technical Education (NACTE) Mediator
+# HRHIS - NACTE Mediator
 
 [![Java CI Badge](https://github.com/SoftmedTanzania/nacte-mediator-hrhis/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/SoftmedTanzania/nacte-mediator-hrhis/actions?query=workflow%3A%22Java+CI+with+Maven%22)
 [![Coverage Status](https://coveralls.io/repos/github/SoftmedTanzania/nacte-mediator-hrhis/badge.svg?branch=development)](https://coveralls.io/github/SoftmedTanzania/nacte-mediator-hrhis?branch=development)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7b05b97def254b6591128789f6a643de)](https://www.codacy.com/gh/SoftmedTanzania/nacte-mediator-hrhis/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SoftmedTanzania/nacte-mediator-hrhis&amp;utm_campaign=Badge_Grade)
 
-An [OpenHIM](http://openhim.org/) mediator for handling system integrations between HRHIS and NACTE.
+An [OpenHIM](http://openhim.org/) mediator for handling system integrations between Human Resource Health Infomation System (HRHIS) and The National Council for Technical Education (NACTE).
 
 ## 1. Dev Requirements
 
