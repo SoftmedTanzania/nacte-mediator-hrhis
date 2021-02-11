@@ -14,15 +14,19 @@
   ],
   "defaultChannelConfig": [
     {
-      "name": "HRHIS to Nacte Mediator",
+      "name": "HRHIS - Nacte Channel",
       "urlPattern": "^/nacte$",
+      "description": "A channel for handling messages from HRHIS to the NACTE via the HIM",
       "type": "http",
       "allow": [
-        "hrhistonactemediator"
+        "hrhis-role"
+      ],
+      "methods": [
+        "POST"
       ],
       "routes": [
         {
-          "name": "HRHIS to Nacte Mediator Route",
+          "name": "HRHIS - Nacte Mediator Route",
           "host": "localhost",
           "port": "3016",
           "path": "/nacte",
