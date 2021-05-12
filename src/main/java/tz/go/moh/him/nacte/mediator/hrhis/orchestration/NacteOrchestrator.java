@@ -94,7 +94,7 @@ public class NacteOrchestrator extends UntypedActor {
                 port = destinationProperties.getInt("destinationPort");
                 path = destinationProperties.getString("destinationPath");
                 scheme = destinationProperties.getString("destinationScheme");
-                authenticationToken = config.getProperty("destinationAuthenticationToken");
+                authenticationToken = destinationProperties.getString("destinationAuthenticationToken");
             }
 
             host = scheme + "://" + host + ":" + port + path + "/"+hfrRequest.getEndpoint()+"/" + hfrRequest.getAcademicYear() + "-" + hfrRequest.getPageNumber() + "-" + hfrRequest.getPageSize() + "-" + hfrRequest.getSummary() + "/" + authenticationToken;
