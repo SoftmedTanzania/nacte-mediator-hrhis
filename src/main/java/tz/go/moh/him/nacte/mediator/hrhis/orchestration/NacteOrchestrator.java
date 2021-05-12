@@ -97,7 +97,7 @@ public class NacteOrchestrator extends UntypedActor {
                 authenticationToken = config.getProperty("destinationAuthenticationToken");
             }
 
-            host = scheme + "://" + host + ":" + port + path + "/" + hfrRequest.getAcademicYear() + "-" + hfrRequest.getPageNumber() + "-" + hfrRequest.getPageSize() + "-" + hfrRequest.getSummary() + "/" + authenticationToken;
+            host = scheme + "://" + host + ":" + port + path + "/"+hfrRequest.getEndpoint()+"/" + hfrRequest.getAcademicYear() + "-" + hfrRequest.getPageNumber() + "-" + hfrRequest.getPageSize() + "-" + hfrRequest.getSummary() + "/" + authenticationToken;
 
             MediatorHTTPRequest request = new MediatorHTTPRequest(workingRequest.getRequestHandler(), getSelf(), "Sending Request", "GET",
                     host, null, headers, parameters);
