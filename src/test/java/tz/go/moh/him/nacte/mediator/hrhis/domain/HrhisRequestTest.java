@@ -45,6 +45,7 @@ public class HrhisRequestTest {
         Assert.assertEquals(1, hrhisRequest.getPageNumber());
         Assert.assertEquals(100, hrhisRequest.getPageSize());
         Assert.assertEquals(0, hrhisRequest.getSummary());
+        Assert.assertEquals("enrollmenthealth", hrhisRequest.getEndpoint());
     }
 
 

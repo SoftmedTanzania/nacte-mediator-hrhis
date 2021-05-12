@@ -17,6 +17,11 @@ public class HrhisRequest {
     private int pageNumber;
 
     /**
+     * The endpoint queried
+     */
+    private String endpoint;
+
+    /**
      * Size of the page to be fetched
      */
     private int pageSize;
@@ -43,6 +48,14 @@ public class HrhisRequest {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 
     public int getSummary() {
