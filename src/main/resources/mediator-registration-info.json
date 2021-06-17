@@ -1,7 +1,7 @@
 {
   "urn": "urn:uuid:068583e0-6c57-11eb-af21-471e9f9cc89e",
   "version": "0.1.0",
-  "name": "HRHIS to Nacte Mediator",
+  "name": "HRHIS - Nacte Mediator",
   "description": "This is an Openhim mediator that handles data sharing between HRHIS and Nacte",
   "endpoints": [
     {
