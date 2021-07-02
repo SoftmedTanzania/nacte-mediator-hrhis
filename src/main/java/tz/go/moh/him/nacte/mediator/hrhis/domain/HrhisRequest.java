@@ -26,6 +26,11 @@ public class HrhisRequest {
      */
     private int pageSize;
 
+    /**
+     * The institution Code
+     */
+    private String institutionCode;
+
     public int getAcademicYear() {
         return academicYear;
     }
@@ -64,6 +69,14 @@ public class HrhisRequest {
 
     public void setSummary(SummaryType summary) {
         this.summary = summary;
+    }
+
+    public String getInstitutionCode() {
+        return institutionCode;
+    }
+
+    public void setInstitutionCode(String institutionCode) {
+        this.institutionCode = institutionCode;
     }
 
     public enum SummaryType {

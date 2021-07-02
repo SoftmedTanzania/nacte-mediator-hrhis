@@ -52,6 +52,12 @@ public abstract class BaseOrchestratorTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        List<MockLauncher.ActorToLaunch> actorsToLaunch = new LinkedList<>();
+
+        actorsToLaunch.add(new MockLauncher.ActorToLaunch("http-connector", MockDestination.class));
+
+        TestingUtils.launchActors(system, configuration.getName(), actorsToLaunch);
     }
 
     /**
@@ -100,17 +106,5 @@ public abstract class BaseOrchestratorTest {
      */
     @After
     public void after() {
-    }
-
-    /**
-     * Runs initialization before each test execution.
-     */
-    @Before
-    public void before() {
-        List<MockLauncher.ActorToLaunch> actorsToLaunch = new LinkedList<>();
-
-        actorsToLaunch.add(new MockLauncher.ActorToLaunch("http-connector", MockDestination.class));
-
-        TestingUtils.launchActors(system, configuration.getName(), actorsToLaunch);
     }
 }
