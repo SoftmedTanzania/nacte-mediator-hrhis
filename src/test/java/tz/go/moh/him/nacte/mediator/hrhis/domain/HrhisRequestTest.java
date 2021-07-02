@@ -21,7 +21,7 @@ public class HrhisRequestTest {
      */
     @Test
     public void testDeserializeHfrRequest() {
-        InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("request.json");
+        InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("enrollments_request.json");
 
         Assert.assertNotNull(stream);
 

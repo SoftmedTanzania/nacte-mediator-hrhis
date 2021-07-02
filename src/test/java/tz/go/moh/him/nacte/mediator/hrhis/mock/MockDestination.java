@@ -64,23 +64,46 @@ public class MockDestination extends MockHTTPConnector {
     @Override
     public void executeOnReceive(MediatorHTTPRequest msg) {
 
-        InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("request.json");
-
-        Assert.assertNotNull(stream);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(HrhisRequest.SummaryType.class, new AttributeSummaryTypeDeserializer());
         gsonBuilder.registerTypeAdapter(HrhisRequest.SummaryType.class, new AttributeSummaryTypeDeserializer());
         Gson gson = gsonBuilder.create();
 
-        HrhisRequest expected;
 
-        try {
-            expected = gson.fromJson(IOUtils.toString(stream), HrhisRequest.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (msg.getUri().contains("/enrollmenthealth")) {
+            InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("enrollments_request.json");
+            Assert.assertNotNull(stream);
+            HrhisRequest expected;
+            try {
+                expected = gson.fromJson(IOUtils.toString(stream), HrhisRequest.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Assert.assertTrue(msg.getUri().contains("/enrollmenthealth/" + expected.getAcademicYear() + "-" + expected.getPageNumber() + "-" + expected.getPageSize() + "-" + expected.getSummary() + "/token"));
+        } else if (msg.getUri().contains("/graduateshealth/")) {
+            InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("enrollments_request.json");
+            Assert.assertNotNull(stream);
+            HrhisRequest expected;
+            try {
+                expected = gson.fromJson(IOUtils.toString(stream), HrhisRequest.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Assert.assertTrue(msg.getUri().contains("/graduateshealth/" + expected.getAcademicYear() + "-" + expected.getPageNumber() + "-" + expected.getPageSize() + "-" + expected.getSummary() + "/token"));
+        } else if (msg.getUri().contains("/institutionsdetailshas")) {
+            Assert.assertTrue(msg.getUri().contains("/institutionsdetailshas/token"));
+        } else if (msg.getUri().contains("/hasteachingstaff/")) {
+            InputStream stream = HrhisOrchestratorTest.class.getClassLoader().getResourceAsStream("enrollments_request.json");
+            Assert.assertNotNull(stream);
+            HrhisRequest expected;
+            try {
+                expected = gson.fromJson(IOUtils.toString(stream), HrhisRequest.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Assert.assertTrue(msg.getUri().contains("/hasteachingstaff/" + expected.getInstitutionCode() + "/token"));
         }
 
-        Assert.assertEquals("2020-1-100-0", expected.getAcademicYear() + "-" + expected.getPageNumber() + "-" + expected.getPageSize() + "-" + expected.getSummary());
     }
 }

@@ -8,14 +8,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.http.HttpHeaders;
+import org.apache.http.HttpStatus;
 import org.json.JSONObject;
 import org.openhim.mediator.engine.MediatorConfig;
+import org.openhim.mediator.engine.messages.FinishRequest;
 import org.openhim.mediator.engine.messages.MediatorHTTPRequest;
 import org.openhim.mediator.engine.messages.MediatorHTTPResponse;
+import tz.go.moh.him.mediator.core.domain.ErrorMessage;
+import tz.go.moh.him.mediator.core.domain.ResultDetail;
 import tz.go.moh.him.nacte.mediator.hrhis.domain.HrhisRequest;
 import tz.go.moh.him.nacte.mediator.hrhis.gsonTypeAdapter.AttributeSummaryTypeDeserializer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +102,19 @@ public class NacteOrchestrator extends UntypedActor {
                 authenticationToken = destinationProperties.getString("destinationAuthenticationToken");
             }
 
-            host = scheme + "://" + host + ":" + port + path + "/"+hfrRequest.getEndpoint()+"/" + hfrRequest.getAcademicYear() + "-" + hfrRequest.getPageNumber() + "-" + hfrRequest.getPageSize() + "-" + hfrRequest.getSummary() + "/" + authenticationToken;
+            if (hfrRequest.getEndpoint().equals("graduateshealth") || hfrRequest.getEndpoint().equals("enrollmenthealth"))
+                host = scheme + "://" + host + ":" + port + path + "/" + hfrRequest.getEndpoint() + "/" + hfrRequest.getAcademicYear() + "-" + hfrRequest.getPageNumber() + "-" + hfrRequest.getPageSize() + "-" + hfrRequest.getSummary() + "/" + authenticationToken;
+            else if (hfrRequest.getEndpoint().equals("institutionsdetailshas"))
+                host = scheme + "://" + host + ":" + port + path + "/" + hfrRequest.getEndpoint() + "/" + authenticationToken;
+            else if (hfrRequest.getEndpoint().equals("hasteachingstaff"))
+                host = scheme + "://" + host + ":" + port + path + "/" + hfrRequest.getEndpoint() + "/" + hfrRequest.getInstitutionCode() + "/" + authenticationToken;
+            else {
+                ErrorMessage errorMessage = new ErrorMessage(workingRequest.getBody(), Collections.singletonList(new ResultDetail(ResultDetail.ResultsDetailsType.ERROR, "Unknown endpoint", null)));
+
+                FinishRequest finishRequest = new FinishRequest(new Gson().toJson(errorMessage), "application/json", HttpStatus.SC_BAD_REQUEST);
+                ((MediatorHTTPRequest) msg).getRequestHandler().tell(finishRequest, getSelf());
+                return;
+            }
 
             MediatorHTTPRequest request = new MediatorHTTPRequest(workingRequest.getRequestHandler(), getSelf(), "Sending Request", "GET",
                     host, null, headers, parameters);
